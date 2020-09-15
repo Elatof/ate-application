@@ -1,4 +1,4 @@
-DROP TABLE item;
+DROP TABLE IF EXISTS item;
 
 CREATE TABLE item
 (
