@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-
+    --spring.profiles.active=ci
     runs-on: ubuntu-latest
 
     steps:
