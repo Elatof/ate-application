@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    --spring.profiles.active=ci
+   
     runs-on: ubuntu-latest
 
     steps:
@@ -21,4 +21,4 @@ jobs:
       with:
         java-version: 11
     - name: Build with Maven
-      run: mvn -B package --file api/pom.xml
+      run: mvn -B package --file api/pom-ci.xml
