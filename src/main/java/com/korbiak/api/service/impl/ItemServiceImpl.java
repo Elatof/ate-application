@@ -1,6 +1,7 @@
 package com.korbiak.api.service.impl;
 
 import com.korbiak.api.dto.ItemDto;
+import com.korbiak.api.dto.input.InputItemDto;
 import com.korbiak.api.mapper.ItemMapper;
 import com.korbiak.api.model.Item;
 import com.korbiak.api.repo.ItemRepo;
@@ -27,4 +28,14 @@ public class ItemServiceImpl implements ItemService {
                 .map(itemMapper::getDtoFromModel)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public ItemDto saveNewItem(InputItemDto itemDto) {
+        Item item = itemMapper.getModelFromDto(itemDto);
+        itemRepo.save(item);
+
+        return itemMapper.getDtoFromModel(item);
+    }
+
+
 }
