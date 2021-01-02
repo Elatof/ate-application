@@ -18,3 +18,8 @@ spring:
           format_sql: true
           dialect: org.hibernate.dialect.PostgreSQLDialect
           current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+
+jwt:
+  token:
+    secret: testObj
+    expired: 3600000
