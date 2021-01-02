@@ -10,6 +10,7 @@ import java.util.Date;
 @Data
 public class ItemOrder {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "start_date")

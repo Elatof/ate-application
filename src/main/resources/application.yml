@@ -3,10 +3,10 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:8002/ate_db
+    url: jdbc:postgresql://localhost:5432/ate_db
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password: 123456
+    password: '023843'
     schema: classpath:/static/schema.sql
     initialization-mode: always
     jpa:

@@ -9,5 +9,9 @@ public interface ItemService {
 
     List<ItemDto> getAllItemsByDepartmentId(int departmentId);
 
-    ItemDto saveNewItem(InputItemDto itemDto);
+    ItemDto saveNewItem(InputItemDto itemDto, int departmentId);
+
+    void deleteItem(int itemId);
+
+    ItemDto updateItem(ItemDto itemDto);
 }

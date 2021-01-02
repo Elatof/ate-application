@@ -21,7 +21,17 @@ public class ItemController {
     }
 
     @PostMapping
-    public ItemDto saveNewItem(@RequestBody InputItemDto itemDto) {
-        return itemService.saveNewItem(itemDto);
+    public ItemDto saveNewItem(@RequestBody InputItemDto itemDto, int departmentId) {
+        return itemService.saveNewItem(itemDto, departmentId);
+    }
+
+    @PutMapping
+    public ItemDto updateItem(@RequestBody ItemDto itemDto) {
+        return itemService.updateItem(itemDto);
+    }
+
+    @DeleteMapping("{itemId}")
+    public void deleteItem(@PathVariable int itemId) {
+        itemService.deleteItem(itemId);
     }
 }

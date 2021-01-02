@@ -34,7 +34,7 @@ CREATE TABLE employee
 (
     id            SERIAL PRIMARY KEY,
     name          VARCHAR(32) NOT NULL,
-    is_admin      BOOLEAN NOT NULL,
+    is_admin      INT NOT NULL,
     department_id INT,
 
     CONSTRAINT fk_department

@@ -11,4 +11,6 @@ public interface ItemMapper {
     ItemDto getDtoFromModel(Item item);
 
     Item getModelFromDto(InputItemDto itemDto);
+
+    Item getModelFromDto(ItemDto itemDto);
 }
