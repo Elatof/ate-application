@@ -136,7 +136,7 @@ VALUES ('Сноуборд 228', 'description', 90, 1, 2, 1),
        ('Лижі шанс', 'description', 60, 2, 1, 1);
 
 INSERT INTO employee(first_name, second_name, is_admin, password)
-VALUES ('Maksym', 'Korbiak', 3, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC'),
+VALUES ('Maksym', 'Korbiak', 1, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC'),
        ('Roman', 'Kutylo', 2, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC'),
        ('Andrii', 'Klymchuk', 1, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC');
 -- password = 'admin' for these users
