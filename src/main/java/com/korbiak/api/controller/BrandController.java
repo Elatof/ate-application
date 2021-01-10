@@ -6,6 +6,7 @@ import com.korbiak.api.dto.input.InputBrandDto;
 import com.korbiak.api.dto.input.InputTypeDto;
 import com.korbiak.api.service.BrandService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,12 +24,12 @@ public class BrandController {
     }
 
     @PostMapping
-    public BrandDto saveNewBrand(@RequestBody InputBrandDto brandDto) {
+    public BrandDto saveNewBrand(@RequestBody @Validated InputBrandDto brandDto) {
         return brandService.saveNewBrand(brandDto);
     }
 
     @PutMapping
-    public BrandDto updateBrand(@RequestBody BrandDto brandDto) {
+    public BrandDto updateBrand(@RequestBody @Validated BrandDto brandDto) {
         return brandService.updateBrand(brandDto);
     }
 

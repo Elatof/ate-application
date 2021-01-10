@@ -1,31 +1,28 @@
 package com.korbiak.api.dto.input;
 
-import com.korbiak.api.dto.BrandDto;
-import com.korbiak.api.dto.TypeDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InputItemDto {
-
+public class InputCustomerDto {
     @NotBlank
     private String name;
 
     @NotBlank
-    private String description;
+    private String surname;
 
     @NotBlank
-    private int price;
+    private String phone;
 
     @NotBlank
-    private TypeDto type;
-
-    @NotBlank
-    private BrandDto brand;
+    private String email;
 }
-

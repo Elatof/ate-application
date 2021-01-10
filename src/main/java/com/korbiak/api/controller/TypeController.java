@@ -4,6 +4,7 @@ import com.korbiak.api.dto.TypeDto;
 import com.korbiak.api.dto.input.InputTypeDto;
 import com.korbiak.api.service.TypeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,12 +22,12 @@ public class TypeController {
     }
 
     @PostMapping
-    public TypeDto saveNewItem(@RequestBody InputTypeDto typeDto) {
+    public TypeDto saveNewItem(@RequestBody @Validated InputTypeDto typeDto) {
         return typeService.saveNewType(typeDto);
     }
 
     @PutMapping
-    public TypeDto updateItem(@RequestBody TypeDto typeDto) {
+    public TypeDto updateItem(@RequestBody @Validated TypeDto typeDto) {
         return typeService.updateType(typeDto);
     }
 

@@ -4,6 +4,7 @@ import com.korbiak.api.dto.ItemDto;
 import com.korbiak.api.dto.input.InputItemDto;
 import com.korbiak.api.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,17 +17,17 @@ public class ItemController {
     private final ItemService itemService;
 
     @GetMapping
-    public List<ItemDto> getAllItemsInDepartment(@RequestParam int departmentId) {
+    public List<ItemDto> getAllItemsInDepartment(@RequestParam @Validated int departmentId) {
         return itemService.getAllItemsByDepartmentId(departmentId);
     }
 
     @PostMapping
-    public ItemDto saveNewItem(@RequestBody InputItemDto itemDto, int departmentId) {
+    public ItemDto saveNewItem(@RequestBody @Validated InputItemDto itemDto, int departmentId) {
         return itemService.saveNewItem(itemDto, departmentId);
     }
 
     @PutMapping
-    public ItemDto updateItem(@RequestBody ItemDto itemDto) {
+    public ItemDto updateItem(@RequestBody @Validated ItemDto itemDto) {
         return itemService.updateItem(itemDto);
     }
 
