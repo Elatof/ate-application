@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("types/")
+@RequestMapping("ate-api/types/")
 @RequiredArgsConstructor
 public class TypeController {
 
