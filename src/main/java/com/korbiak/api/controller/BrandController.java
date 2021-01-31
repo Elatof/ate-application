@@ -6,14 +6,17 @@ import com.korbiak.api.dto.input.InputBrandDto;
 import com.korbiak.api.dto.input.InputTypeDto;
 import com.korbiak.api.service.BrandService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("ate-api/brands/")
 @RequiredArgsConstructor
+@CrossOrigin
 public class BrandController {
 
     private final BrandService brandService;
@@ -24,13 +27,16 @@ public class BrandController {
     }
 
     @PostMapping
-    public BrandDto saveNewBrand(@RequestBody @Validated InputBrandDto brandDto) {
-        return brandService.saveNewBrand(brandDto);
+    public BrandDto saveNewBrand(@RequestParam @Validated InputBrandDto brandDto,
+                                 @RequestParam(value = "file", required = false) MultipartFile image) {
+        return brandService.saveNewBrand(brandDto, image);
     }
 
-    @PutMapping
-    public BrandDto updateBrand(@RequestBody @Validated BrandDto brandDto) {
-        return brandService.updateBrand(brandDto);
+    @PutMapping(path = "{brandId}")
+    public BrandDto updateBrand(@PathVariable int brandId,
+                                @RequestParam @Validated InputBrandDto brandDto,
+                                @RequestParam(value = "file", required = false) MultipartFile image) {
+        return brandService.updateBrand(brandId, brandDto, image);
     }
 
     @DeleteMapping("{brandId}")

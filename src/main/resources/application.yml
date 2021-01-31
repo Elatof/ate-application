@@ -18,8 +18,17 @@ spring:
           format_sql: true
           dialect: org.hibernate.dialect.PostgreSQLDialect
           current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+  servlet:
+    multipart:
+      max-file-size: 1206330
+      max-request-size: 1206330
 
 jwt:
   token:
     secret: testObj
     expired: 3600000
+
+cloudinaryValue:
+  cloudName: 'elatof'
+  apiKey: 619376921193877
+  apiSecretKey: '-FVTjphyYAGVQ5vvZFGFScqhFl4'

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
 @Data
@@ -15,4 +16,7 @@ public class BrandDto {
 
     @NotBlank
     private String name;
+
+    @NotBlank
+    private String urlImg;
 }

@@ -55,7 +55,8 @@ CREATE TABLE type
 CREATE TABLE brand
 (
     id   SERIAL PRIMARY KEY,
-    name VARCHAR(32) NOT NULL UNIQUE
+    name VARCHAR(32) NOT NULL UNIQUE,
+    image_url VARCHAR(255)
 );
 
 CREATE TABLE item
