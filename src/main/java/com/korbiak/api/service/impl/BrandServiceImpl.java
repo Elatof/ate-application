@@ -36,6 +36,7 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public BrandDto saveNewBrand(InputBrandDto brandDto, MultipartFile image) {
+        checkName(brandDto.getName());
         Brand newBrand = brandMapper.getModelFromDto(brandDto);
         brandRepo.save(newBrand);
 
@@ -61,6 +62,7 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public BrandDto updateBrand(int brandId, InputBrandDto brandDto, MultipartFile image) {
+        checkName(brandDto.getName());
         Brand brand = brandMapper.getModelFromDto(brandDto);
         brand.setId(brandId);
 
@@ -79,5 +81,11 @@ public class BrandServiceImpl implements BrandService {
         brandRepo.save(brand);
 
         return brandMapper.getDtoFromModel(brand);
+    }
+
+    private void checkName(String name) {
+        if (brandRepo.findBrandByName(name) != null) {
+            throw new IllegalArgumentException("Brand with name: " + name + " already exist");
+        }
     }
 }

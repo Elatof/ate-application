@@ -19,7 +19,7 @@ public class ItemOrder {
     @Column(name = "end_date")
     private Date endDate;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 

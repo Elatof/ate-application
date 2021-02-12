@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("ate-api/types/")
 @RequiredArgsConstructor
+@CrossOrigin
 public class TypeController {
 
     private final TypeService typeService;

@@ -68,6 +68,7 @@ CREATE TABLE item
     type_id       INT          NOT NULL,
     brand_id      INT          NOT NULL,
     department_id INT          NOT NULL,
+    image_url     VARCHAR(255),
 
     CONSTRAINT fk_department_item
         FOREIGN KEY (department_id)
@@ -136,9 +137,16 @@ INSERT INTO item(name, description, price, type_id, brand_id, department_id)
 VALUES ('Сноуборд 228', 'description', 90, 1, 2, 1),
        ('Лижі шанс', 'description', 60, 2, 1, 1);
 
-INSERT INTO employee(first_name, second_name, is_admin, password)
-VALUES ('Maksym', 'Korbiak', 1, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC'),
-       ('Roman', 'Kutylo', 2, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC'),
-       ('Andrii', 'Klymchuk', 1, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC');
+INSERT INTO employee(first_name, second_name, is_admin, password, department_id)
+VALUES ('Maksym', 'Korbiak', 1, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC', 1),
+       ('Roman', 'Kutylo', 2, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC', null),
+       ('Andrii', 'Klymchuk', 3, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC', null);
 -- password = 'admin' for these users
+
+INSERT INTO customer(name, surname, phone, email)
+VALUES ( 'Maksym', 'Korbiak', '+380980265122', 'maksik125@gmail.com' ) ;
+
+INSERT INTO item_order(start_date, end_date, employee_id, item_id, customer_id)
+VALUES ( '2.5.2021' , '2.7.2021', 1, 2, 1);
+
 

@@ -3,6 +3,7 @@ package com.korbiak.api.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "item")
@@ -32,4 +33,10 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
+
+    @OneToMany(mappedBy = "item", cascade = CascadeType.REMOVE)
+    private List<ItemOrder> orders;
+
+    @Column(name = "image_url")
+    private String imageUrl;
 }

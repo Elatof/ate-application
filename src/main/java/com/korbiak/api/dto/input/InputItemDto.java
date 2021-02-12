@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
@@ -19,13 +20,13 @@ public class InputItemDto {
     @NotBlank
     private String description;
 
-    @NotBlank
+    @NotNull
     private int price;
 
-    @NotBlank
+    @NotNull
     private TypeDto type;
 
-    @NotBlank
+    @NotNull
     private BrandDto brand;
 }
 

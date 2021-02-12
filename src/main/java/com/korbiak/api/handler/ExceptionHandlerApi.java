@@ -3,6 +3,7 @@ package com.korbiak.api.handler;
 import com.korbiak.api.handler.error.ApiError;
 import com.korbiak.api.handler.error.ApiSubError;
 import com.korbiak.api.handler.error.ApiValidationError;
+import org.postgresql.util.PSQLException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
@@ -17,6 +18,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.persistence.EntityNotFoundException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

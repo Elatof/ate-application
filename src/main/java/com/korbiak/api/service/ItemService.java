@@ -2,16 +2,17 @@ package com.korbiak.api.service;
 
 import com.korbiak.api.dto.ItemDto;
 import com.korbiak.api.dto.input.InputItemDto;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface ItemService {
 
-    List<ItemDto> getAllItemsByDepartmentId(int departmentId);
+    List<ItemDto> getAllItemsByDepartmentId();
 
-    ItemDto saveNewItem(InputItemDto itemDto, int departmentId);
+    ItemDto saveNewItem(InputItemDto itemDto, MultipartFile multipartFile);
 
     void deleteItem(int itemId);
 
-    ItemDto updateItem(ItemDto itemDto);
+    ItemDto updateItem(ItemDto itemDto, MultipartFile multipartFile);
 }

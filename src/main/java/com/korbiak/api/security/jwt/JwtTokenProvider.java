@@ -43,9 +43,13 @@ public class JwtTokenProvider {
         } else if (employee.getIsAdmin() == 2) {
             role = "ADMIN";
         } else if (employee.getIsAdmin() == 3) {
-            role = "MIAN_ADMIN";
+            role = "MAIN_ADMIN";
         }
         claims.put("roles", role);
+        if (employee.getDepartment() != null){
+            claims.put("departmentId", employee.getDepartment().getId());
+        }
+        claims.put("userId", employee.getId());
 
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMilliseconds);

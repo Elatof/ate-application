@@ -34,5 +34,7 @@ public class ItemDto {
 
     @NotNull
     private BrandDto brand;
+
+    private String imageUrl;
 }
 

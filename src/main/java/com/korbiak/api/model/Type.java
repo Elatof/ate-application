@@ -3,6 +3,7 @@ package com.korbiak.api.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "type")
@@ -14,4 +15,7 @@ public class Type {
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "type", cascade = CascadeType.REMOVE)
+    private List<Item> items;
 }

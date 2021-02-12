@@ -3,6 +3,7 @@ package com.korbiak.api.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "brand")
@@ -17,4 +18,7 @@ public class Brand {
 
     @Column(name = "image_url")
     private String urlImg;
+
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.REMOVE)
+    private List<Item> items;
 }
