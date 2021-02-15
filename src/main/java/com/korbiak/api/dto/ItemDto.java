@@ -32,6 +32,8 @@ public class ItemDto {
     @NotNull
     private TypeDto type;
 
+    private boolean isFree;
+
     @NotNull
     private BrandDto brand;
 

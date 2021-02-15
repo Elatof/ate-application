@@ -114,10 +114,10 @@ CREATE TABLE item_order
             REFERENCES customer (id)
 );
 
-INSERT INTO brand(name)
-VALUES ('jack foxskin'),
-       ('butterfly'),
-       ('wender');
+INSERT INTO brand(name, image_url)
+VALUES ('jack foxskin', 'https://res.cloudinary.com/elatof/image/upload/v1612185145/ate-project/brand/1-id_dt7etp.jpg'),
+       ('butterfly', 'https://res.cloudinary.com/elatof/image/upload/v1612185145/ate-project/brand/2-id_uxz742.jpg'),
+       ('wender', 'https://res.cloudinary.com/elatof/image/upload/v1612185145/ate-project/brand/3-id_ifbovd.jpg');
 
 INSERT INTO type(name)
 VALUES ('сноуборд'),
@@ -133,9 +133,9 @@ VALUES ('Україна', 'Львів', 'Величковського', 6);
 INSERT INTO department(name, address_id)
 VALUES ('Відділення №001', 1);
 
-INSERT INTO item(name, description, price, type_id, brand_id, department_id)
-VALUES ('Сноуборд 228', 'description', 90, 1, 2, 1),
-       ('Лижі шанс', 'description', 60, 2, 1, 1);
+INSERT INTO item(name, description, price, type_id, brand_id, department_id, image_url)
+VALUES ('Лижі шанс', 'description', 90, 2, 2, 1, 'https://res.cloudinary.com/elatof/image/upload/v1612185145/ate-project/item/1-id_iddgvn.jpg'),
+       ('Сноуборд 228', 'description', 60, 1, 1, 1, 'https://res.cloudinary.com/elatof/image/upload/v1612185145/ate-project/item/2-id_l2nfsr.jpg');
 
 INSERT INTO employee(first_name, second_name, is_admin, password, department_id)
 VALUES ('Maksym', 'Korbiak', 1, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC', 1),

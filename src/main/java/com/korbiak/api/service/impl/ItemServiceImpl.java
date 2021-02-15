@@ -7,9 +7,12 @@ import com.korbiak.api.mapper.ItemMapper;
 import com.korbiak.api.model.Department;
 import com.korbiak.api.model.Employee;
 import com.korbiak.api.model.Item;
+import com.korbiak.api.model.ItemOrder;
 import com.korbiak.api.repo.EmployeeRepository;
+import com.korbiak.api.repo.ItemOrderRepo;
 import com.korbiak.api.repo.ItemRepo;
 import com.korbiak.api.security.jwt.JwtUser;
+import com.korbiak.api.service.ItemOrderService;
 import com.korbiak.api.service.ItemService;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -28,18 +31,46 @@ public class ItemServiceImpl implements ItemService {
     private final ItemMapper itemMapper;
     private final CloudinaryManager cloudinaryManager;
     private final EmployeeRepository employeeRepository;
+    private final ItemOrderRepo itemOrderRepo;
 
     @Override
-    public List<ItemDto> getAllItemsByDepartmentId() {
+    public List<ItemDto> getAllItemsByDepartmentId(boolean all) {
         List<Item> items = itemRepo.findAll();
         JwtUser user = (JwtUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Employee employee = employeeRepository.findById(user.getId())
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
+        List<ItemOrder> orders = itemOrderRepo.findAll();
+
         return items.stream()
                 .filter(item -> item.getDepartment().getId() == employee.getId())
                 .map(itemMapper::getDtoFromModel)
-                .collect(Collectors.toList());
+                .peek(itemDto -> {
+                    boolean isFree = true;
+                    for (ItemOrder order : orders) {
+                        if (order.getItem().getId() == itemDto.getId()) {
+                            isFree = false;
+                            break;
+                        }
+                    }
+                    itemDto.setFree(isFree);
+                }).filter(itemDto -> {
+                    if (!all) {
+                        return itemDto.isFree();
+                    }
+                    return true;
+                }).collect(Collectors.toList());
+    }
+
+    @Override
+    public ItemDto getItemsById(int id) {
+        List<ItemDto> items = getAllItemsByDepartmentId(true);
+        for (ItemDto item : items) {
+            if (item.getId() == id) {
+                return item;
+            }
+        }
+        throw new IllegalArgumentException("Item not found");
     }
 
     @Override
@@ -55,7 +86,7 @@ public class ItemServiceImpl implements ItemService {
         itemRepo.save(item);
 
         String file = null;
-        if (multipartFile != null){
+        if (multipartFile != null) {
             try {
                 file = cloudinaryManager.uploadImage(multipartFile, "item", item.getId());
             } catch (IOException e) {
@@ -73,8 +104,9 @@ public class ItemServiceImpl implements ItemService {
                 .orElseThrow(() -> new IllegalArgumentException("Item not found"));
         Item updatedItem = itemMapper.getModelFromDto(itemDto);
         updatedItem.setDepartment(currentItem.getDepartment());
+        updatedItem.setImageUrl(currentItem.getImageUrl());
 
-        if (multipartFile != null){
+        if (multipartFile != null) {
             try {
                 updatedItem.setImageUrl(cloudinaryManager.uploadImage(multipartFile, "item", currentItem.getId()));
             } catch (IOException e) {

@@ -19,8 +19,13 @@ public class ItemController {
     private final ItemService itemService;
 
     @GetMapping
-    public List<ItemDto> getAllItemsInDepartment() {
-        return itemService.getAllItemsByDepartmentId();
+    public List<ItemDto> getAllItemsInDepartment(boolean all) {
+        return itemService.getAllItemsByDepartmentId(all);
+    }
+
+    @GetMapping("{itemId}")
+    public ItemDto getItemById(@PathVariable int itemId){
+        return itemService.getItemsById(itemId);
     }
 
     @PostMapping

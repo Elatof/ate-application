@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface ItemService {
 
-    List<ItemDto> getAllItemsByDepartmentId();
+    List<ItemDto> getAllItemsByDepartmentId(boolean all);
+
+    ItemDto getItemsById(int id);
 
     ItemDto saveNewItem(InputItemDto itemDto, MultipartFile multipartFile);
 
