@@ -49,4 +49,12 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepo.save(customer);
         return customerMapper.getDtoFromModel(customer);
     }
+
+    @Override
+    public CustomerDto getCustomerById(int customerId) {
+        Customer customer = customerRepo.findById(customerId)
+                .orElseThrow(() -> new IllegalArgumentException("Customer not found"));
+
+        return customerMapper.getDtoFromModel(customer);
+    }
 }

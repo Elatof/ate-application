@@ -128,17 +128,21 @@ VALUES ('сноуборд'),
        ('аксесуари');
 
 INSERT INTO address(country, city, street, build_number)
-VALUES ('Україна', 'Львів', 'Величковського', 6);
+VALUES ('Україна', 'Львів', 'Величковського', 6),
+       ('Україна', 'Львів', 'Виговського', 20);
 
 INSERT INTO department(name, address_id)
-VALUES ('Відділення №001', 1);
+VALUES ('Відділення №001', 1),
+       ('Відділення №002', 2);
 
 INSERT INTO item(name, description, price, type_id, brand_id, department_id, image_url)
 VALUES ('Лижі шанс', 'description', 90, 2, 2, 1, 'https://res.cloudinary.com/elatof/image/upload/v1612185145/ate-project/item/1-id_iddgvn.jpg'),
-       ('Сноуборд 228', 'description', 60, 1, 1, 1, 'https://res.cloudinary.com/elatof/image/upload/v1612185145/ate-project/item/2-id_l2nfsr.jpg');
+       ('Сноуборд 228', 'description', 150, 1, 1, 1, 'https://res.cloudinary.com/elatof/image/upload/v1612185145/ate-project/item/2-id_l2nfsr.jpg'),
+       ('Паоатка Плюс', 'description', 250, 3, 3, 2, null);
 
 INSERT INTO employee(first_name, second_name, is_admin, password, department_id)
 VALUES ('Maksym', 'Korbiak', 1, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC', 1),
+       ('Victor', 'Pikyluk', 1, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC', 2),
        ('Roman', 'Kutylo', 2, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC', null),
        ('Andrii', 'Klymchuk', 3, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC', null);
 -- password = 'admin' for these users
@@ -147,6 +151,10 @@ INSERT INTO customer(name, surname, phone, email)
 VALUES ( 'Maksym', 'Korbiak', '+380980265122', 'maksik125@gmail.com' ) ;
 
 INSERT INTO item_order(start_date, end_date, employee_id, item_id, customer_id)
-VALUES ( '2.5.2021' , '2.7.2021', 1, 2, 1);
+VALUES ( '2.5.2021' , '2.7.2021', 1, 2, 1),
+       ( '3.1.2021' , '3.5.2021', 1, 2, 1),
+       ( '7.25.2019' , '8.1.2019', 2, 3, 1);
+
+
 
 

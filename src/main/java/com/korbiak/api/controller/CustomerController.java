@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("ate-api/customers/")
 @RequiredArgsConstructor
+@CrossOrigin
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -22,6 +23,11 @@ public class CustomerController {
     @GetMapping
     public List<CustomerDto> getAllCustomers() {
         return customerService.getAllCustomers();
+    }
+
+    @GetMapping("{customerId}")
+    public CustomerDto getCustomerById(@PathVariable int customerId) {
+        return customerService.getCustomerById(customerId);
     }
 
     @PostMapping

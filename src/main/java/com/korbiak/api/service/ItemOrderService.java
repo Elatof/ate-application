@@ -13,6 +13,10 @@ public interface ItemOrderService {
 
     List<ItemOrderDto> getAllOrders();
 
+    List<ItemOrderDto> getAllDepartmentOrders();
+
+    ItemOrderDto getOrderById(int orderId);
+
     ItemOrderDto saveNewOrder(InputItemOrderDto inputItemOrderDto);
 
     void deleteOrder(int orderId);
