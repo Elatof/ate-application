@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,8 +50,9 @@ public class ItemServiceImpl implements ItemService {
                     boolean isFree = true;
                     for (ItemOrder order : orders) {
                         if (order.getItem().getId() == itemDto.getId()) {
-                            isFree = false;
-                            break;
+                            if (order.getEndDate().after(new Date())){
+                                isFree = false;
+                            }
                         }
                     }
                     itemDto.setFree(isFree);

@@ -30,6 +30,12 @@ public class ItemDto {
     private int price;
 
     @NotNull
+    private int commonPrice;
+
+    @NotBlank
+    private String state;
+
+    @NotNull
     private TypeDto type;
 
     private boolean isFree;

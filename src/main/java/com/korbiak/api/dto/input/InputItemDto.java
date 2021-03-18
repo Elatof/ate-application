@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -22,6 +23,12 @@ public class InputItemDto {
 
     @NotNull
     private int price;
+
+    @NotNull
+    private int commonPrice;
+
+    @NotBlank
+    private String state;
 
     @NotNull
     private TypeDto type;

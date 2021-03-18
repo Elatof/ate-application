@@ -17,6 +17,10 @@ public class ItemOrderDto {
 
     private Date endDate;
 
+    private int price;
+
+    private boolean closed;
+
     private EmployeeDto employee;
 
     private ItemDto item;

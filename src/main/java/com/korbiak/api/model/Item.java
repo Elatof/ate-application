@@ -22,6 +22,12 @@ public class Item {
     @Column(name = "price")
     private int price;
 
+    @Column(name = "common_price")
+    private int commonPrice;
+
+    @Column(name = "state")
+    private String state;
+
     @ManyToOne
     @JoinColumn(name = "type_id")
     private Type type;

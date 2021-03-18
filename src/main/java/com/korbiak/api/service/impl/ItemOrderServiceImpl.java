@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,6 +30,7 @@ public class ItemOrderServiceImpl implements ItemOrderService {
     public List<ItemOrderDto> getAllOrders() {
         return itemOrderRepo.findAll().stream()
                 .map(itemOrderMapper::getDtoFromModel)
+                .peek(itemOrderDto -> itemOrderDto.setClosed(!itemOrderDto.getEndDate().after(new Date())))
                 .collect(Collectors.toList());
     }
 
@@ -41,6 +43,8 @@ public class ItemOrderServiceImpl implements ItemOrderService {
         return itemOrderRepo.findAll().stream()
                 .filter(itemOrder -> employee.getDepartment().equals(itemOrder.getItem().getDepartment()))
                 .map(itemOrderMapper::getDtoFromModel)
+                .map(this::countPrice)
+                .peek(itemOrderDto -> itemOrderDto.setClosed(!itemOrderDto.getEndDate().after(new Date())))
                 .collect(Collectors.toList());
     }
 
@@ -48,7 +52,9 @@ public class ItemOrderServiceImpl implements ItemOrderService {
     public ItemOrderDto getOrderById(int orderId) {
         ItemOrder itemOrder = itemOrderRepo.findById(orderId)
                 .orElseThrow(() -> new IllegalArgumentException("Order not found"));
-        return itemOrderMapper.getDtoFromModel(itemOrder);
+        ItemOrderDto itemOrderDto = countPrice(itemOrderMapper.getDtoFromModel(itemOrder));
+        itemOrderDto.setClosed(!itemOrderDto.getEndDate().after(new Date()));
+        return itemOrderDto;
     }
 
     @Override
@@ -62,7 +68,9 @@ public class ItemOrderServiceImpl implements ItemOrderService {
         itemOrder.setEmployee(employee);
 
         itemOrderRepo.save(itemOrder);
-        return itemOrderMapper.getDtoFromModel(itemOrder);
+        ItemOrderDto itemOrderDto = countPrice(itemOrderMapper.getDtoFromModel(itemOrder));
+        itemOrderDto.setClosed(!itemOrderDto.getEndDate().after(new Date()));
+        return itemOrderDto;
     }
 
     @Override
@@ -74,6 +82,16 @@ public class ItemOrderServiceImpl implements ItemOrderService {
     public ItemOrderDto updateOrder(ItemOrderDto itemOrderDto) {
         ItemOrder itemOrder = itemOrderMapper.getModelFromDto(itemOrderDto);
         itemOrderRepo.save(itemOrder);
-        return itemOrderMapper.getDtoFromModel(itemOrder);
+        itemOrderDto = countPrice(itemOrderMapper.getDtoFromModel(itemOrder));
+        itemOrderDto.setClosed(!itemOrderDto.getEndDate().after(new Date()));
+        return itemOrderDto;
     }
+
+    private ItemOrderDto countPrice(ItemOrderDto orderDto) {
+        long diff = orderDto.getEndDate().getTime() - orderDto.getStartDate().getTime();
+        int days = (int) (TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) + 1);
+        orderDto.setPrice(days * orderDto.getItem().getPrice());
+        return orderDto;
+    }
+
 }
