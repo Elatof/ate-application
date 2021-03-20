@@ -44,7 +44,7 @@ public class ItemServiceImpl implements ItemService {
         List<ItemOrder> orders = itemOrderRepo.findAll();
 
         return items.stream()
-                .filter(item -> item.getDepartment().getId() == employee.getId())
+                .filter(item -> item.getDepartment().getId() == employee.getDepartment().getId())
                 .map(itemMapper::getDtoFromModel)
                 .peek(itemDto -> {
                     boolean isFree = true;
