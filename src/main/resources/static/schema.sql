@@ -149,12 +149,12 @@ VALUES ('Лижі шанс', 'description', 90, 2, 2, 1, 'задовільний
 INSERT INTO employee(first_name, second_name, is_admin, password, department_id)
 VALUES ('Maksym', 'Korbiak', 1, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC', 1),
        ('Victor', 'Pikyluk', 1, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC', 2),
-       ('Roman', 'Kutylo', 2, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC', null),
-       ('Andrii', 'Klymchuk', 3, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC', null);
+       ('Maksym', 'Korbiak2', 2, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC', null),
+       ('Maksym', 'Korbiak3', 3, '$2a$10$sOl0xuyeqvtH/5SZTXwLLeJtB/nMulcJKoLPuoKqFevCgUTOIK9SC', null);
 -- password = 'admin' for these users
 
 INSERT INTO customer(name, surname, phone, email)
-VALUES ('Maksym', 'Korbiak', '+380980265122', 'maksik125@gmail.com');
+VALUES ('Maksym', 'Korbiak_Customer', '+380980265122', 'maksik125@gmail.com');
 
 INSERT INTO item_order(start_date, end_date, employee_id, item_id, customer_id)
 VALUES ('2.5.2021', '2.7.2021', 1, 1, 1),
